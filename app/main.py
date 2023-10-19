@@ -32,14 +32,16 @@ def get_section_info(section_id: str):
     ta2_name = ta_name_list[1]["fname"] + " " + ta_name_list[1]["lname"]
 
     print(ta1_name)
+    recitation_time = RECITATION_HOURS.get(section_id, "Section not found")
+    start_time, end_time = recitation_time.split("~")
 
     # TODO
     if section_id == "a":
         return {
             "section": "section_name",
-            "start_time": "HH:MM",
-            "end_time": "HH:MM",
-            "ta": ["taName1", "taName2"]
+            "start_time": start_time,
+            "end_time": end_time,
+            "ta": ["taName1", "taName2"],
         }
     else:
         raise HTTPException(status_code=404, detail="Invalid section id")
